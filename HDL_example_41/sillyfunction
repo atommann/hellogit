@@ -1,0 +1,90 @@
+#! /usr/bin/vvp
+:ivl_version "0.9.6 " "(v0_9_6)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_0x8bf0c20 .scope module, "test" "test" 2 1;
+ .timescale 0 0;
+v0x8befcd8_0 .var "a", 0 0;
+v0x8befd38_0 .var "b", 0 0;
+v0x8befda8_0 .var "c", 0 0;
+v0x8befe18_0 .net "y", 0 0, L_0x8bf0030; 1 drivers
+S_0x8bf0ca0 .scope module, "sf1" "sillyfunction" 2 8, 3 1, S_0x8bf0c20;
+ .timescale 0 0;
+L_0x8befa28 .functor NOT 1, v0x8befcd8_0, C4<0>, C4<0>, C4<0>;
+L_0x8befee0 .functor NOT 1, v0x8befd38_0, C4<0>, C4<0>, C4<0>;
+L_0x8beff50 .functor AND 1, L_0x8befa28, L_0x8befee0, C4<1>, C4<1>;
+L_0x8befff8 .functor NOT 1, v0x8befda8_0, C4<0>, C4<0>, C4<0>;
+L_0x8bf0080 .functor AND 1, L_0x8beff50, L_0x8befff8, C4<1>, C4<1>;
+L_0x8bf0128 .functor NOT 1, v0x8befd38_0, C4<0>, C4<0>, C4<0>;
+L_0x8bf0160 .functor AND 1, v0x8befcd8_0, L_0x8bf0128, C4<1>, C4<1>;
+L_0x8bf01d0 .functor NOT 1, v0x8befda8_0, C4<0>, C4<0>, C4<0>;
+L_0x8bf0208 .functor AND 1, L_0x8bf0160, L_0x8bf01d0, C4<1>, C4<1>;
+L_0x8bf02b0 .functor OR 1, L_0x8bf0080, L_0x8bf0208, C4<0>, C4<0>;
+L_0x8c0ab98 .functor NOT 1, v0x8befd38_0, C4<0>, C4<0>, C4<0>;
+L_0x8beff18 .functor AND 1, v0x8befcd8_0, L_0x8c0ab98, C4<1>, C4<1>;
+L_0x8c0acd8 .functor AND 1, L_0x8beff18, v0x8befda8_0, C4<1>, C4<1>;
+L_0x8bf0030 .functor OR 1, L_0x8bf02b0, L_0x8c0acd8, C4<0>, C4<0>;
+v0x8bf0d20_0 .net *"_s0", 0 0, L_0x8befa28; 1 drivers
+v0x8bef598_0 .net *"_s10", 0 0, L_0x8bf0128; 1 drivers
+v0x8bef5f8_0 .net *"_s12", 0 0, L_0x8bf0160; 1 drivers
+v0x8bef658_0 .net *"_s14", 0 0, L_0x8bf01d0; 1 drivers
+v0x8bef6c0_0 .net *"_s16", 0 0, L_0x8bf0208; 1 drivers
+v0x8bef720_0 .net *"_s18", 0 0, L_0x8bf02b0; 1 drivers
+v0x8bef7a0_0 .net *"_s2", 0 0, L_0x8befee0; 1 drivers
+v0x8bef800_0 .net *"_s20", 0 0, L_0x8c0ab98; 1 drivers
+v0x8bef888_0 .net *"_s22", 0 0, L_0x8beff18; 1 drivers
+v0x8bef8e8_0 .net *"_s24", 0 0, L_0x8c0acd8; 1 drivers
+v0x8bef978_0 .net *"_s4", 0 0, L_0x8beff50; 1 drivers
+v0x8bef9d8_0 .net *"_s6", 0 0, L_0x8befff8; 1 drivers
+v0x8befa70_0 .net *"_s8", 0 0, L_0x8bf0080; 1 drivers
+v0x8befad0_0 .net "a", 0 0, v0x8befcd8_0; 1 drivers
+v0x8befb70_0 .net "b", 0 0, v0x8befd38_0; 1 drivers
+v0x8befbd0_0 .net "c", 0 0, v0x8befda8_0; 1 drivers
+v0x8befc78_0 .alias "y", 0 0, v0x8befe18_0;
+    .scope S_0x8bf0c20;
+T_0 ;
+    %vpi_call 2 11 "$dumpfile", "sillyfunction-dump.vcd";
+    %vpi_call 2 12 "$dumpvars", 1'sb0, S_0x8bf0c20;
+    %set/v v0x8befcd8_0, 0, 1;
+    %set/v v0x8befd38_0, 0, 1;
+    %set/v v0x8befda8_0, 0, 1;
+    %delay 10, 0;
+    %set/v v0x8befcd8_0, 0, 1;
+    %set/v v0x8befd38_0, 0, 1;
+    %set/v v0x8befda8_0, 1, 1;
+    %delay 10, 0;
+    %set/v v0x8befcd8_0, 0, 1;
+    %set/v v0x8befd38_0, 1, 1;
+    %set/v v0x8befda8_0, 0, 1;
+    %delay 10, 0;
+    %set/v v0x8befcd8_0, 0, 1;
+    %set/v v0x8befd38_0, 1, 1;
+    %set/v v0x8befda8_0, 1, 1;
+    %delay 10, 0;
+    %set/v v0x8befcd8_0, 1, 1;
+    %set/v v0x8befd38_0, 0, 1;
+    %set/v v0x8befda8_0, 0, 1;
+    %delay 10, 0;
+    %set/v v0x8befcd8_0, 1, 1;
+    %set/v v0x8befd38_0, 0, 1;
+    %set/v v0x8befda8_0, 1, 1;
+    %delay 10, 0;
+    %set/v v0x8befcd8_0, 1, 1;
+    %set/v v0x8befd38_0, 1, 1;
+    %set/v v0x8befda8_0, 0, 1;
+    %delay 10, 0;
+    %set/v v0x8befcd8_0, 1, 1;
+    %set/v v0x8befd38_0, 1, 1;
+    %set/v v0x8befda8_0, 1, 1;
+    %delay 10, 0;
+    %vpi_call 2 37 "$finish";
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "sillyfunction-test.v";
+    "sillyfunction.v";
